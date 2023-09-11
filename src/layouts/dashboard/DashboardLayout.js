@@ -6,8 +6,10 @@ import { Switch, Route } from "react-router-dom";
 import Header from './header';
 import Nav from './nav';
 import UserPage from '../../pages/UserPage';
+import CoursePage from '../../pages/CoursePage'
 import BlogPage from '../../pages/BlogPage';
 import GamificationPage from '../../pages/GamificationPage';
+import CourseDetail from '../../pages/CourseDetail';
 // ----------------------------------------------------------------------
 
 const APP_BAR_MOBILE = 64;
@@ -45,9 +47,12 @@ export default function DashboardLayout() {
 
       <Main>
       <Switch>
-            <Route path="/dashboard/user"><UserPage /></Route>
-            <Route path="/dashboard/blog"><BlogPage /></Route>
-            <Route path="/dashboard/product"><GamificationPage /></Route>
+            <Route path="/admin/user"><UserPage /></Route>
+            <Route path="/admin/courses/create"><CourseDetail /></Route>
+            <Route path="/admin/courses/modify"><CourseDetail /></Route>
+            <Route path="/admin/courses/"><CoursePage /></Route>
+            <Route path="/admin/blog"><BlogPage /></Route>
+            <Route path="/admin/product"><GamificationPage /></Route>
       </Switch>
       </Main>
     </StyledRoot>

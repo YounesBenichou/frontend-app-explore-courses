@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 // mocks_
-import account from '../../../_mock/account';
 
 // ----------------------------------------------------------------------
 
@@ -25,6 +24,10 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const [account, setAccount] = useState({
+    displayName : "Younes Benichou",
+    email : "hy_benichou@esi.dz"
+  })
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -54,7 +57,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar  src={'/assets/profile.jpg'} alt="photoURL" />
       </IconButton>
 
       <Popover
