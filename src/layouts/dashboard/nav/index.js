@@ -5,11 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
 // mock
-import account from '../../../_mock/account';
-// hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components
-import Logo from '../../../components/logo';
 import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
@@ -49,7 +46,6 @@ export default function Nav({ openNav, onCloseNav }) {
   const { authenticatedUser } = useContext(AppContext);
   const user_data = useContext(AppContext);
 
-  console.log(user_data)
   if (authenticatedUser) {
     username = authenticatedUser.username;
   }
@@ -58,7 +54,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const { pathname } = useLocation();
 
-  const isDesktop = useResponsive('up', 'lg');
+  const isDesktop = useResponsive('down', 'xs');
 
   useEffect(() => {
     if (openNav) {
@@ -75,7 +71,7 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-        <img src={'/assets/djezzy_academy.jpg'} width={100}></img>
+        {/* <img src={'/assets/djezzy_academy.jpg'} width={100}></img> */}
       </Box>
 
       <Box sx={{ mt: 3,mb: 3, mx: 2.5 }}>
@@ -102,6 +98,8 @@ export default function Nav({ openNav, onCloseNav }) {
     <Box
       component="nav"
       sx={{
+        position: 'absolute',
+        
         flexShrink: { lg: 0 },
         width: { lg: NAV_WIDTH },
       }}

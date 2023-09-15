@@ -1,33 +1,28 @@
-import { useState } from 'react';
+import { useState ,useEffect, useContext} from 'react';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
-// mocks_
+import { getAuthenticatedHttpClient, getAuthenticatedUser} from '@edx/frontend-platform/auth';
+import Iconify from '../../../components/iconify';
+import { getConfig } from '@edx/frontend-platform';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import {AppContext} from '@edx/frontend-platform/react';
+
 
 // ----------------------------------------------------------------------
 
-const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
-];
+
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
-  const [account, setAccount] = useState({
-    displayName : "Younes Benichou",
-    email : "hy_benichou@esi.dz"
-  })
+
+  var _useContext = useContext(AppContext),
+  authenticatedUser = _useContext.authenticatedUser,
+  config = _useContext.config;
+
+  const [account, setAccount] = useState(null)
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -38,7 +33,55 @@ export default function AccountPopover() {
     setOpen(null);
   };
 
+  // UseStates 
+
+  // functions 
+  const getAccount = async () =>{
+    try {
+      const result = await getAuthenticatedHttpClient().get(URL_GET_Account)
+      setAccount(result.data[0])   
+    }catch( error ){
+      console.log(error)
+    }
+  }
+  const MENU_OPTIONS = [
+    {
+      label: 'Accueil',
+      icon: 'eva:home-fill',
+      link: config.LMS_BASE_URL
+    },
+    // {
+    //   label: 'Portail d\'administration',
+    //   icon: 'eva:home-fill',
+    //   link: config.ADMIN_URL + '/admin/'
+    // },
+    {
+      label: 'Profile',
+      icon: 'eva:person-fill',
+      link: config.ACCOUNT_PROFILE_URL+'/profile/u/'+getAuthenticatedUser().username,
+    },
+    {
+      label: 'Compte',
+      icon: 'eva:person-fill',
+      link: config.ACCOUNT_SETTINGS_URL,
+    },
+    {
+      label: 'Mes accomplissement',
+      icon: 'eva:person-fill',
+      link: config.GAMIFICATION_URL+'/gamification/',
+    },
+    
+  ];
+
+  const URL_GET_Account = config.LMS_BASE_URL + "/api/user/v1/accounts?username="+getAuthenticatedUser().username;
+
+
+  useEffect(()=>{
+    getAccount()
+  },[])
+
   return (
+    account && 
     <>
       <IconButton
         onClick={handleOpen}
@@ -50,14 +93,15 @@ export default function AccountPopover() {
               content: "''",
               width: '100%',
               height: '100%',
-              borderRadius: '50%',
+              // borderRadius: '50%',
               position: 'absolute',
-              bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
+              // bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
             },
           }),
         }}
       >
-        <Avatar  src={'/assets/profile.jpg'} alt="photoURL" />
+        <Avatar  sx={{borderRadius:'0'}} src={account.profile_image.image_url_full} alt="photoURL" />
+        <Iconify onClick={handleOpen} sx={{ marginLeft: '10px',transform:'rotate(180deg)', transform: 'scale(0.7) rotate(180deg)'}}icon="tabler:triangle-filled" />
       </IconButton>
 
       <Popover
@@ -81,7 +125,7 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {account.name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             {account.email}
@@ -89,20 +133,31 @@ export default function AccountPopover() {
         </Box>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
-
         <Stack sx={{ p: 1 }}>
+          {getAuthenticatedUser().administrator&&
+          <MenuItem onClick={()=>{
+                window.open(config.ADMIN_URL + '/admin/', '_self');
+              }}>
+                Portail d'administration
+          </MenuItem>
+          } 
           {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} onClick={handleClose}>
+            <MenuItem key={option.label} onClick={()=>{
+              window.open(option.link, '_self');
+            }}>
               {option.label}
             </MenuItem>
           ))}
+          <Divider sx={{ borderStyle: 'dashed' }} />
+          <MenuItem onClick={()=>{
+                window.open(config.LOGOUT_URL, '_self');
+              }}>
+                Se déconnecter
+          </MenuItem>
         </Stack>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
-
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
-          Logout
-        </MenuItem>
+        
+            
       </Popover>
     </>
   );

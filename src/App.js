@@ -9,7 +9,6 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import StyledChart from "./components/chart";
 // layouts
 import DashboardLayout from './layouts/dashboard';
-import SimpleLayout from './layouts/simple';
 // Pages
 import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';

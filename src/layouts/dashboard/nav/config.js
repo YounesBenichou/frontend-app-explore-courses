@@ -1,36 +1,24 @@
 // component
 import SvgColor from '../../../components/svg-color';
-
 // ----------------------------------------------------------------------
 
 const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
 
+
 const navConfig = [
   {
-    title: 'dashboard',
+    title: 'Cours',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
   },
   {
-    title: 'Utilisateur',
+    title: 'Explorer les cours',
     path: '/admin/user',
-    icon: icon('ic_user'),
   },
   {
-    title: 'Formation',
+    title: 'Article',
     path: '/admin/courses',
-    icon: icon('ic_user'),
   },
-  {
-    title: 'articles',
-    path: '/admin/blog',
-    icon: icon('ic_blog'),
-  },
-  {
-    title: 'paramètres',
-    path: '/admin/settings',
-    icon: icon('ic_settings'),
-  },
+
   // {
   //   title: 'login',
   //   path: '/login',
