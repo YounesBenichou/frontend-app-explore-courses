@@ -65,7 +65,7 @@ export default function BlogPageDetail() {
     post && 
     <>
       <Helmet>
-        <title> Course | Minimal UI </title>
+        <title> Blog | Lire </title>
       </Helmet>
 
       <Container sx={{

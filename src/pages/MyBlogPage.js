@@ -238,7 +238,7 @@ export default function MyBlogPage() {
     posts && 
     <>
       <Helmet>
-        <title> Course | Minimal UI </title>
+        <title> Blog | Mes articles </title>
       </Helmet>
 
       <Container>
