@@ -154,13 +154,15 @@ export default function Header({ onOpenNav }) {
           <ButtonItem onClick={()=>{
             window.open(navItems[0].path, '_self');
           }}  >{navItems[0].title}</ButtonItem>
-          <ButtonItem onClick={()=>{
-            window.open(navItems[1].path, '_self');
-          }}  >{navItems[1].title}</ButtonItem>
-          <ButtonItem sx={{
+          <ButtonItem 
+          sx={{
             color: "#fff",
             background: '#D23228',
-          }} onClick={()=>{
+          }}
+          onClick={()=>{
+            window.open(navItems[1].path, '_self');
+          }}  >{navItems[1].title}</ButtonItem>
+          <ButtonItem onClick={()=>{
             window.open(navItems[2].path, '_self');
           }}  >{navItems[2].title}</ButtonItem>
 

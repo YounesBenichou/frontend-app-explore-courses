@@ -5,10 +5,6 @@ import { styled } from '@mui/material/styles';
 import { Switch, Route } from "react-router-dom";
 import Header from './header';
 import Nav from './nav';
-import BlogPage from '../../pages/BlogPage';
-import MyBlogPage from '../../pages/MyBlogPage';
-import MyBlogDetail from '../../pages/MyBlogDetail';
-import BlogPageDetail from '../../pages/BlogPageDetail';
 import ExploreCourses from '../../pages/ExploreCourses';
 // ----------------------------------------------------------------------
 
@@ -47,13 +43,7 @@ export default function DashboardLayout() {
 
       <Main>
       <Switch>
-            <Route path="/blog/posts/create/"><MyBlogDetail /></Route>
-            <Route path="/blog/posts/modify/"><MyBlogDetail /></Route>
-            <Route path="/blog/my-posts/"><MyBlogPage /></Route>
-            <Route path="/blog/:postId/"><BlogPageDetail /> </Route>
-            <Route path="/blog/"><BlogPage /></Route>
-            {/* <Route path="/explore-courses/"><ExploreCourses /></Route> */}
-
+            <Route path="/explore-courses/"><ExploreCourses /></Route>
       </Switch>
       </Main>
     </StyledRoot>

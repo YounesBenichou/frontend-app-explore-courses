@@ -9,13 +9,6 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import StyledChart from "./components/chart";
 // layouts
 import DashboardLayout from './layouts/dashboard';
-// Pages
-import BlogPage from './pages/BlogPage';
-import UserPage from './pages/UserPage';
-import LoginPage from './pages/LoginPage';
-import Page404 from './pages/Page404';
-import ProductsPage from './pages/GamificationPage';
-import DashboardAppPage from './pages/DashboardAppPage';
 
 
 function App() {
