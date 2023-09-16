@@ -151,7 +151,7 @@ export default function ExploreCourses() {
               
               id="nomCourse"
               name="nomCourse"
-              label="Rechercher article"
+              label="Rechercher formation"
               placeholder='par exemple, Introduction au marketing'
               fullWidth
               autoComplete="given-name"
