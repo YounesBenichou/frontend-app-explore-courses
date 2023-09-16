@@ -207,6 +207,29 @@ export default function ExploreCourses() {
                   width: '100%',
                 }}
               >
+                <Stack direction={'row'} justifyContent={'flex-end'}>
+                <Box sx={{
+                  position: 'relative',
+                  top: '-20px',
+                  width: 'fit-content',
+                  position: 'relative',
+                  background: palette.red['darker'],
+                  borderRadius: '20px',
+                  padding: '0 15px 0 15px',
+                  color: 'white',
+                  textAlign: 'center',
+                  /* Body3/medium */
+                  fontFamily: 'ubuntu',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '150%',
+
+                }}>
+                  {course.course_type}
+                </Box>
+                </Stack>
+                
                 <Typography gutterBottom variant="caption" sx={{ color: 'text.disabled', display: 'block' }}>
                 Date de début : {fDate(course.start)}
                 </Typography>
